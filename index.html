@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte, Futuro Sustentável — Agrinho</title>
+    <style>
+        /* ==========================================================================
+           1. VARIÁVEIS DE DESIGN & ESTILO GLOBAL
+           ========================================================================== */
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #4c8c4a;
+            --primary-dark: #003300;
+            --secondary: #f57f17;
+            --secondary-light: #ffb04c;
+            --accent: #2e7d32;
+            --bg-light: #f1f8e9;
+            --bg-white: #ffffff;
+            --text-dark: #263238;
+            --text-light: #546e7a;
+            --border-color: #dcedc8;
+            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --shadow-strong: 0 12px 40px rgba(27, 94, 32, 0.15);
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Resets de Margens e Layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ==========================================================================
+           2. CABEÇALHO & MENUS RESPONSIVOS
+           ========================================================================== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-dark);
+            background-color: var(--border-color);
+        }
+
+        /* ==========================================================================
+           3. SEÇÃO HERO (APRESENTAÇÃO PRINCIPAL)
+           ========================================================================== */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(27, 94, 32, 0.9) 0%, rgba(0, 51, 0, 0.95) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>') repeat;
+            color: var(--bg-white);
+            padding: 100px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background-color: var(--bg-light);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            font-weight: bold;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(245, 127, 23, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero h1 span {
+            color: var(--secondary-light);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #dcedc8;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(245, 127, 23, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #f9a825;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--bg-white);
+            color: var(--bg-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-white);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           4. CONTEÚDO PRINCIPAL (CONTAINERS & SEÇÕES)
+           ========================================================================== */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Grid de Introdução */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .intro-card {
+            background-color: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            border-left: 6px solid var(--primary);
+        }
+
+        .intro-card h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* Gráfico Decorativo CSS puro */
+        .balance-graphic {
+            background: linear-gradient(145deg, #e8f5e9, #c8e6c9);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .balance-beam {
+            width: 80%;
+            height: 12px;
+            background-color: var(--primary-dark);
+            border-radius: 6px;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .balance-pivot {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 30px solid var(--primary-dark);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .balance-left, .balance-right {
+            position: absolute;
+            top: -50px;
+            padding: 10px 15px;
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+        }
+
+        .balance-left {
+            left: 10%;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .balance-right {
+            right: 10%;
+            border-top: 3px solid var(--primary-light);
+        }
+
+        /* ==========================================================================
+           5. AS MELHORES PRÁTICAS (GRID DE CARTÕES DE TECNOLOGIA)
+           ========================================================================== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .practice-card {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--primary-light);
+        }
+
+        .practice-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .practice-icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+
+        .practice-card h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .practice-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           6. SEÇÃO DOS ÓRGÃOS DE PESQUISA & CONFIANÇA (TABS CSS PURO)
+           ========================================================================== */
+        .orgs-section {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 60px;
+        }
+
+        /* Estrutura de Tabs Sem JS */
+        .tab-system {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Radio buttons invisíveis */
+        .tab-input {
+            display: none;
+        }
+
+        .tab-headers {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-label {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-light);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-label:hover {
+            color: var(--primary);
+        }
+
+        /* Vinculação do estado selecionado aos rótulos e conteúdos */
+        #tab1:checked ~ .tab-headers label[for="tab1"],
+        #tab2:checked ~ .tab-headers label[for="tab2"],
+        #tab3:checked ~ .tab-headers label[for="tab3"],
+        #tab4:checked ~ .tab-headers label[for="tab4"] {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #tab1:checked ~ .tab-contents #content1,
+        #tab2:checked ~ .tab-contents #content2,
+        #tab3:checked ~ .tab-contents #content3,
+        #tab4:checked ~ .tab-contents #content4 {
+            display: block
